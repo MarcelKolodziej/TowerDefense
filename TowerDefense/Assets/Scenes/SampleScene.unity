@@ -128,10 +128,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3186173951216834410, guid: 57065c36aebc1744dbf7d02937228ff6,
+        type: 3}
+      propertyPath: m_Text
+      value: 0,0
+      objectReference: {fileID: 0}
     - target: {fileID: 9039656005151660736, guid: 57065c36aebc1744dbf7d02937228ff6,
         type: 3}
       propertyPath: m_Name
-      value: Cube (1)
+      value: Cube
       objectReference: {fileID: 0}
     - target: {fileID: 9039656005151660739, guid: 57065c36aebc1744dbf7d02937228ff6,
         type: 3}
@@ -146,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 9039656005151660739, guid: 57065c36aebc1744dbf7d02937228ff6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9039656005151660739, guid: 57065c36aebc1744dbf7d02937228ff6,
         type: 3}
