@@ -1,30 +1,38 @@
-﻿// The PrintAwake script is placed on a GameObject.  The Awake function is
-// called when the GameObject is started at runtime.  The script is also
-// called by the Editor.  An example is when the Scene is changed to a
-// different Scene in the Project window.
-// The Update() function is called, for example, when the GameObject transform
-// position is changed in the Editor.
+﻿using UnityEngine;
 
-using UnityEngine;
-
+[RequireComponent(typeof(Waypoint))]
 [ExecuteInEditMode]
 [SelectionBase]
 public class CubeEditor : MonoBehaviour
 {
-    [SerializeField] [Range(1f, 20f)] float gridSize = 10f;
+    Waypoint waypoint;
 
-    TextMesh textMesh;
-
+    private void Awake()
+    {
+        waypoint = GetComponent<Waypoint>();
+    }
     void Update()
     {
-        Vector3 snapPos;
+        SnapToGrid();
+        UpdateLabel();
+    }
 
-        snapPos.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
-        snapPos.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-        transform.position = new Vector3(snapPos.x, 0f, snapPos.z);
+    private void SnapToGrid()
+    {
+        int gridSize = waypoint.GetGridSize();
+        transform.position = new Vector3(
+            waypoint.GetGridPos().x,
+            0f,
+            waypoint.GetGridPos().y
+        );
+    }
 
-        textMesh = GetComponentInChildren<TextMesh>();
-        string labelText = textMesh.text = snapPos.x/gridSize + "," + snapPos.z/gridSize;
+    private void UpdateLabel()
+    {
+        int gridSize = waypoint.GetGridSize();
+        TextMesh textMesh = GetComponentInChildren<TextMesh>();
+        string labelText = textMesh.text = waypoint.GetGridPos().x / gridSize + 
+                                            "," + waypoint.GetGridPos().y / gridSize;
         textMesh.text = labelText;
         gameObject.name = labelText;
     }
