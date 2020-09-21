@@ -6,9 +6,12 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     Dictionary<Vector2, Waypoint> grid = new Dictionary<Vector2, Waypoint>();
+    [SerializeField] Waypoint startPoint, endPoint;
+
     void Start()
     {
         LoadBlocks();
+        StartAndEnd();
     }
 
     private void LoadBlocks()
@@ -19,13 +22,18 @@ public class Pathfinder : MonoBehaviour
             var gridPos = waypoint.GetGridPos();
             if (grid.ContainsKey(gridPos))
             {
-                Debug.LogError("Skipping overlapping block" + waypoint);
+                Debug.LogWarning("Skipping overlapping block" + waypoint);
             }
             else
             {
                     grid.Add(waypoint.GetGridPos(), waypoint);
-            }
+            } 
         }
-        print("Loaded " + grid.Count + " blocks");
+    }
+
+    public void StartAndEnd()
+    {
+        startPoint.SetTopColor(Color.yellow);
+        endPoint.SetTopColor(Color.red);
     }
 }
